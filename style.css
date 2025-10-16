@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #3f51b5; /* Azul Índigo */
+    --secondary-color: #ff9800; /* Naranja Ámbar */
+    --background-light: #f4f7f9;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--background-light);
+    font-family: 'Poppins', sans-serif; 
+    color: var(--text-dark);
+}
+
+/* ------------------------------------ */
+/* NAVEGACIÓN Y TÍTULOS */
+/* ------------------------------------ */
+.navbar {
+    background-color: var(--primary-color) !important;
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+.title-main {
+    font-weight: 600;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+/* ------------------------------------ */
+/* TARJETAS DE RESUMEN (DASHBOARD) */
+/* ------------------------------------ */
+.card-summary {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    color: var(--text-light);
+    overflow: hidden;
+}
+
+/* Estilos de gradiente para las tarjetas */
+.card-summary.bg-primary {
+    background: linear-gradient(45deg, #3f51b5, #6c7cd9);
+}
+.card-summary.bg-success {
+    background: linear-gradient(45deg, #4CAF50, #81C784);
+}
+.card-summary.bg-danger {
+    background: linear-gradient(45deg, #F44336, #E57373);
+}
+
+.card-summary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-summary .card-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.card-summary .display-4 {
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ------------------------------------ */
+/* BOTONES Y ACCIONES */
+/* ------------------------------------ */
+.bg-custom {
+    background-color: var(--primary-color) !important;
+}
+
+.btn-custom-action {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom-action:hover {
+    background-color: #e68900;
+    border-color: #e68900;
+    color: var(--text-dark);
+}
+
+.btn-devolver {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: var(--text-light);
+}
+
+.btn-devolver:hover {
+    background-color: #388E3C;
+    border-color: #388E3C;
+    color: var(--text-light);
+}
+
+/* ------------------------------------ */
+/* TABLAS Y FORMULARIOS */
+/* ------------------------------------ */
+.table th {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    border-color: #ced4da;
+}
