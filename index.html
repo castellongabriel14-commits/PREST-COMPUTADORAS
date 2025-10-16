@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Préstamos de Equipos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-laptop-code me-2"></i> Gestión de Equipos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="historial.php">Historial</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> <span id="user-display">Usuario</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="change_password.php">Cambiar Contraseña</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="mb-4 title-main"><i class="fas fa-chart-line me-2"></i> Dashboard Principal</h1>
+
+        <div class="row g-4 mb-5" id="summary-cards">
+            <div class="col-md-4">
+                <div class="card card-summary bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title text-uppercase">Total de Equipos</h5>
+                                <p class="card-text display-4" id="total-equipos">...</p>
+                            </div>
+                            <i class="fas fa-desktop fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-summary bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title text-uppercase">Disponibles</h5>
+                                <p class="card-text display-4" id="equipos-disponibles">...</p>
+                            </div>
+                            <i class="fas fa-check-circle fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-summary bg-danger text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title text-uppercase">En Préstamo</h5>
+                                <p class="card-text display-4" id="equipos-prestamo">...</p>
+                            </div>
+                            <i class="fas fa-clipboard-list fa-3x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-lg mb-5">
+            <div class="card-header bg-custom text-white">
+                <h5 class="mb-0"><i class="fas fa-cogs me-2"></i> Gestión de Préstamos Activos</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-custom-action me-2" data-bs-toggle="modal" data-bs-target="#modalNuevoPrestamo">
+                        <i class="fas fa-plus me-1"></i> Nuevo Préstamo
+                    </button>
+                    <a href="editar.php" class="btn btn-secondary">
+                        <i class="fas fa-pen-to-square me-1"></i> Agregar Equipo
+                    </a>
+                </div>
+
+                <h6 class="mt-4 mb-3 text-muted">Préstamos Activos (Simulación)</h6>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID Interno</th>
+                                <th>Estudiante</th>
+                                <th>Fecha Prevista</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="active-loans-table-body">
+                            <tr><td colspan="4" class="text-center text-muted">Cargando datos... (o use PHP para datos iniciales)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNuevoPrestamo" tabindex="-1" aria-labelledby="modalNuevoPrestamoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-custom text-white">
+                    <h5 class="modal-title" id="modalNuevoPrestamoLabel">Registrar Nuevo Préstamo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loanForm" action="procesar.php" method="POST">
+                        <input type="hidden" name="action" value="add_loan">
+                        <div class="mb-3">
+                            <label for="computer_id" class="form-label">Equipo Disponible</label>
+                            <select class="form-select" id="computer_id" name="computer_id" required>
+                                <option value="">Seleccione un equipo</option>
+                                </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="student_name" class="form-label">Nombre del Estudiante</label>
+                            <input type="text" class="form-control" id="student_name" name="student_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expected_return" class="form-label">Fecha de Devolución Prevista</label>
+                            <input type="date" class="form-control" id="expected_return" name="return_date" required>
+                        </div>
+                        <button type="submit" class="btn btn-custom-action w-100 mt-3">Registrar Préstamo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
